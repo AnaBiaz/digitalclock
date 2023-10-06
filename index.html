@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" type="text/css" href="clock.css">
+    <style>
+        .clock {
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="clock">
+       <P id="date"></P>
+       <p id="time"></p>
+    </div>
+
+    <script>
+        const WEEk = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+function updateTime() {
+    var now = new Date();
+
+
+   document.getElementById("time").innerText = 
+            zeroPadding(now.getHours(), 2) + ":" +
+            zeroPadding(now.getMinutes(), 2) + ":" +
+            zeroPadding(now.getSeconds(), 2);
+    
+    document.getElementById("date").innerText =
+            now.getFullYear() + "-" +
+            zeroPadding(now.getMonth() +1, 2) + "-" +
+            zeroPadding(now.getDate(), 2) + " " +
+            WEEk[now.getDay()];
+
+
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+
+function zeroPadding(num, digit) {
+    return String(num).padStart(digit, '0');
+}
+    </script>
+</body>
+</html>
